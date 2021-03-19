@@ -1,0 +1,82 @@
+<!-- Llamar a cabecera -->
+<%- include('partials/header') -%>
+
+
+    <h1 id="title-main" class="hoverEffects mb-3"> Ajax and NodeJS </h1>
+
+    <div class="container mb-4">
+        <div class="row">
+            <!-- form -->
+            <div class="col-md-4">
+                <div class="card bg-dark card_kire">
+                    <form id="form_task"> <!-- form --> 
+                        <div class="card-header teal_kire">
+                            New Task
+                        </div>
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <input id="task-input" type="text" class="form-control bg-dark gris_kire" style="border: none;"
+                                    placeholder="Enter Task" required>
+                                <input type="hidden" id="idEDIT" value="">
+                            </div>
+
+                            <div class="mb-3">
+                                <textarea id="description-input" rows="5" class="form-control bg-dark gris_kire border-0"
+                                    placeholder="Descriptions"></textarea>
+                            </div>
+
+                            <div class="d-grid gap-2">
+                                <button type="submit" class="btn btn-outline-info">Save</button>
+                                <button type="reset" class="btn btn-outline-danger btnReset">Reset</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- table -->
+            <div class="col-md-8">
+                <div class="card bg-dark card_kire">
+                    <div class="card-header teal_kire">
+                        Tasks (list)
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <table class="table" id="tablaTask">
+                                <thead>
+                                    <tr class="teal_kire">
+                                        <th scope="col">Task</th>
+                                        <th scope="col">Description</th>
+                                        <th scope="col" class="text-center">Acciones</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody class="gris_kire" id="listaTareas">
+                                    <%if (tasks.length > 0) { %>
+                                        <% tasks.forEach(function(task) { %>
+                                        <tr>
+                                            <td> <%= task.task %> </td>
+                                            <td> <%= task.description %></td>
+                                            <td class="text-center"> 
+                                                <i class="fas fa-edit fa-2x text-success fa-green btnEditar" data-id="<%= task.id %>" role="button"></i>
+                                                <i class="fas fa-minus-circle fa-2x text-danger fa-red mx-1 btnEliminar" data-id="<%= task.id %>" role="button"></i>
+                                            </td>
+                                        </tr>
+                                        <% }) %>
+                                    <% } %>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    
+    <!-- custom JS -->
+    <script src="/js/customJS.js"></script>
+
+
+<!-- Llamar a footer -->
+<%- include('partials/footer') -%>
