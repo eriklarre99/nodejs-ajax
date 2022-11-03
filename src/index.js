@@ -12,7 +12,7 @@ app.set('view engine', 'ejs');
 
 // middlewares
 app.use(morgan('dev'));
-app.use(express.urlencoded({extended: false})); //para envios de datos por url
+app.use(express.urlencoded({extended: false})); //para envios de datos por url  
 app.use(express.json()); //encargado de entender y de recibir json
 
 // routes

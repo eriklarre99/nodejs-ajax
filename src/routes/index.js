@@ -3,7 +3,6 @@ const router = Router();
 const fs = require('fs'); // para leer, modificar, etc archivos
 const { v4: uuidv4 } = require('uuid'); // version 4
 
-
 const json_tasks = fs.readFileSync('src/database.json', 'utf-8'); // para leer
 let tasks = JSON.parse(json_tasks); // decodificar
 
@@ -11,12 +10,11 @@ router.get('/', (req, res) =>{
     // let jsonProducts = JSON.stringify(productos)
     res.render('index.ejs' , { tasks }) //pasamos la lista del json usado como DB
 })
-
 router.get('/nosotros', (req, res) => {
     res.render('nosotros');
 })
 
-// Guardar Tarea
+// SAVE TASK
 router.post('/saveTask', (req, res) => {
     let { task , description } = req.body 
     if (description == '') {
@@ -28,7 +26,6 @@ router.post('/saveTask', (req, res) => {
         description,
         estado: false
     }
-    
     // add a new task to the array
     tasks.push(jsonAux);
 
@@ -39,7 +36,7 @@ router.post('/saveTask', (req, res) => {
     res.json(jsonAux);
 })
 
-// delete Task
+// DELETE TASK
 router.post('/deleteTask', (req, res) => {
     const idAux = req.body.id
 
@@ -51,7 +48,7 @@ router.post('/deleteTask', (req, res) => {
     res.json('eliminado')
 })
   
-// edit Task
+// UPDATE TASK
 router.post('/editTask', (req, res) => {
     let { id, task, description } = req.body
 
